@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#F7F4EC">
+<title>Einladung &amp; Rückmeldung</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #F7F4EC;
+    --card: #FFFEFA;
+    --ink: #1F2E22;
+    --ink-soft: #52604F;
+    --gold: #A9832E;
+    --sage: #97A98C;
+    --error: #8B3A3A;
+    --success: #3F6B4A;
+    --max-width: 640px;
+  }
+
+  * { box-sizing: border-box; }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Jost', sans-serif;
+    font-weight: 300;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  main { max-width: var(--max-width); margin: 0 auto; padding: 0 20px; }
+
+  /* ---------- Hero ---------- */
+  .hero {
+    min-height: 78vh;
+    min-height: 78dvh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 48px 0 28px;
+  }
+
+  .hero-eyebrow {
+    font-family: 'Jost', sans-serif;
+    font-size: 0.75rem;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin: 0 0 20px;
+  }
+
+  .hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 600;
+    font-size: clamp(2.6rem, 7vw, 4.2rem);
+    line-height: 1.1;
+    margin: 0 0 18px;
+  }
+
+  .hero-sub {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: clamp(1.1rem, 3vw, 1.4rem);
+    color: var(--ink-soft);
+    margin: 0 0 34px;
+  }
+
+  .divider {
+    width: 100%;
+    max-width: 260px;
+    height: 18px;
+    color: var(--gold);
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .hero-eyebrow, .hero-title, .hero-sub, .divider {
+      animation: rise 900ms ease both;
+    }
+    .hero-title { animation-delay: 90ms; }
+    .hero-sub { animation-delay: 180ms; }
+    .divider { animation-delay: 260ms; }
+  }
+
+  @keyframes rise {
+    from { opacity: 0; transform: translateY(14px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ---------- Details ---------- */
+  .details {
+    padding: 28px 0 40px;
+    border-top: 1px solid rgba(31,46,34,0.1);
+  }
+
+  .details-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 18px;
+  }
+
+  .details-list li {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 4px;
+    border-left: 2px solid var(--gold);
+    padding-left: 14px;
+  }
+
+  .details-list dt {
+    font-size: 0.7rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+
+  .details-list dd {
+    margin: 0;
+    font-size: 1.05rem;
+    color: var(--ink);
+    overflow-wrap: break-word;
+  }
+
+  /* ---------- RSVP ---------- */
+  .rsvp { padding: 20px 0 64px; }
+
+  .rsvp-card {
+    background: var(--card);
+    border-radius: 2px;
+    padding: 28px 20px 28px;
+    box-shadow: 0 24px 60px -32px rgba(31,46,34,0.35);
+  }
+
+  .rsvp-perforation {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--sage);
+    font-size: 0.85rem;
+    letter-spacing: 0.05em;
+    border-bottom: 1px dashed var(--sage);
+    padding-bottom: 14px;
+    margin-bottom: 22px;
+  }
+
+  .rsvp-card h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 600;
+    font-size: 1.9rem;
+    margin: 0 0 6px;
+  }
+
+  .rsvp-intro {
+    color: var(--ink-soft);
+    font-size: 0.95rem;
+    margin: 0 0 28px;
+  }
+
+  form { display: grid; gap: 20px; }
+
+  label {
+    display: block;
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin-bottom: 8px;
+  }
+
+  input[type="text"],
+  input[type="number"],
+  input[type="time"] {
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid rgba(31,46,34,0.3);
+    background: transparent;
+    padding: 10px 2px;
+    font-family: 'Jost', sans-serif;
+    font-size: 1rem;
+    color: var(--ink);
+    outline-offset: 4px;
+  }
+
+  input[type="text"]:focus,
+  input[type="number"]:focus,
+  input[type="time"]:focus {
+    border-bottom-color: var(--gold);
+    outline: 2px solid var(--gold);
+    outline-offset: 4px;
+  }
+
+  input[type="time"]::-webkit-calendar-picker-indicator {
+    cursor: pointer;
+    opacity: 0.6;
+  }
+
+  input[type="time"]::-webkit-calendar-picker-indicator:hover {
+    opacity: 1;
+  }
+
+  button[type="submit"] {
+    width: 100%;
+    margin-top: 8px;
+    background: var(--ink);
+    color: var(--card);
+    border: none;
+    padding: 14px 34px;
+    font-family: 'Jost', sans-serif;
+    font-size: 0.85rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: transform 150ms ease, background 150ms ease;
+  }
+
+  button[type="submit"]:hover:not(:disabled) {
+    background: var(--gold);
+    transform: translateY(-1px);
+  }
+
+  button[type="submit"]:disabled {
+    opacity: 0.6;
+    cursor: default;
+  }
+
+  .form-status {
+    margin: 20px 0 0;
+    font-size: 0.95rem;
+  }
+
+  .form-status.success { color: var(--success); }
+  .form-status.error { color: var(--error); }
+
+  footer {
+    text-align: center;
+    padding: 0 0 48px;
+    color: var(--ink-soft);
+    font-size: 0.8rem;
+  }
+
+  /* ---------- Ab Tablet/Desktop ---------- */
+  @media (min-width: 600px) {
+    main { padding: 0 24px; }
+
+    .hero { padding: 64px 0 32px; }
+
+    .details { padding: 32px 0 56px; }
+
+    .details-list { gap: 22px; }
+
+    .details-list li {
+      grid-template-columns: 120px 1fr;
+      gap: 16px;
+      padding-left: 18px;
+    }
+
+    .rsvp { padding: 24px 0 80px; }
+
+    .rsvp-card { padding: 40px 32px 36px; }
+
+    button[type="submit"] {
+      width: auto;
+      justify-self: start;
+    }
+  }
+</style>
+</head>
+<body>
+<main>
+
+  <section class="hero">
+    <!-- HIER ANPASSEN: Anlass / Namen -->
+    <p class="hero-eyebrow">Wir laden euch herzlich ein zur</p>
+    <h1 class="hero-title">10 Jahre Jubiläumsfeier</h1>
+    <p class="hero-sub">Wir feiern unseren besonderen Tag – und würden uns freuen, diesen mit euch zu teilen.</p>
+    <svg class="divider" viewBox="0 0 260 18" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <line x1="0" y1="9" x2="110" y2="9" stroke="currentColor" stroke-width="1"/>
+      <path d="M130 2 L138 9 L130 16 L122 9 Z" fill="currentColor"/>
+      <line x1="150" y1="9" x2="260" y2="9" stroke="currentColor" stroke-width="1"/>
+    </svg>
+  </section>
+
+  <section class="details">
+    <!-- HIER ANPASSEN: Datum, Uhrzeit und Ort der Veranstaltung -->
+      <dl class="details-list">
+          <li>
+          <dt>Datum</dt>
+          <dd>Mittwoch, 16. September 2026</dd>
+          </li>
+          <li>
+          <dt>Uhrzeit</dt>
+          <dd>ab 14:00 Uhr</dd>
+          </li>
+          <li>
+          <dt>Ende</dt>
+          <dd>offen</dd>
+          </li>
+          <li>
+          <dt>Ort</dt>
+          <dd>H1 am Hennesee, Am Hentenberg 1, 59872 Meschede</dd>
+          </li>
+      </dl>
+  </section>
+
+  <section class="rsvp">
+    <div class="rsvp-card">
+      <p class="rsvp-perforation">✂ &nbsp;Antwortkarte – bitte bis zum 19. August ausfüllen</p>
+      <h2>Deine Rückmeldung</h2>
+      <p class="rsvp-intro">Lass uns wissen, ob ihr dabei seit – das dauert nur eine Minute.</p>
+
+      <form id="rsvpForm" novalidate>
+        <div>
+          <label for="name">Name</label>
+          <input type="text" id="name" name="Name" required autocomplete="name">
+        </div>
+
+        <div>
+          <label for="anzahl">Anzahl Personen</label>
+          <input type="number" id="anzahl" name="Anzahl_Personen" min="1" max="20" value="1" required>
+        </div>
+
+        <div>
+          <label for="ankunftszeit">Wir kommen um...</label>
+          <input type="time" id="ankunftszeit" name="Ankunftszeit" step="900">
+        </div>
+
+        <!-- Betreff der E-Mail, die bei dir ankommt -->
+        <input type="hidden" name="_subject" value="Neue Rückmeldung zur Einladung">
+
+        <!-- Wird per JavaScript automatisch mit dem formatierten Text befüllt -->
+        <input type="hidden" name="Rueckmeldung" id="formattedField">
+
+        <!-- Spam-Falle für Formspree: für Menschen unsichtbar, Bots tappen hinein -->
+        <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
+
+        <button type="submit" id="submitBtn">Rückmeldung senden</button>
+      </form>
+
+      <p id="formStatus" class="form-status" role="status" aria-live="polite"></p>
+    </div>
+  </section>
+
+  <footer>
+    <p>Wir freuen uns auf euch.</p>
+  </footer>
+
+</main>
+
+<script>
+  // ============================================================
+  // HIER ANPASSEN: eigenen Formspree-Formular-Link eintragen
+  // Beispiel: "https://formspree.io/f/abcd1234"
+  // ============================================================
+  const FORMSPREE_ENDPOINT = "https://formspree.io/f/DEINE_FORM_ID";
+
+  const form = document.getElementById('rsvpForm');
+  const status = document.getElementById('formStatus');
+  const submitBtn = document.getElementById('submitBtn');
+  const formattedField = document.getElementById('formattedField');
+
+  form.addEventListener('submit', async function (event) {
+    event.preventDefault();
+
+    const name = form.Name.value.trim();
+    const anzahl = form.Anzahl_Personen.value.trim();
+    const ankunftszeit = form.Ankunftszeit.value ? `${form.Ankunftszeit.value} Uhr` : '(keine Uhrzeit angegeben)';
+
+    if (!name || !anzahl) {
+      status.textContent = 'Bitte fülle Name und Anzahl Personen aus.';
+      status.className = 'form-status error';
+      return;
+    }
+
+    // Baut genau den E-Mail-Text zusammen, der bei dir ankommen soll
+    formattedField.value =
+`--------------------------------
+Neue Einladung-Rückmeldung
+
+Name:
+${name}
+
+Anzahl Personen:
+${anzahl}
+
+Wir kommen um:
+${ankunftszeit}
+--------------------------------
+Vielen Dank.
+--------------------------------`;
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Wird gesendet …';
+    status.textContent = '';
+    status.className = 'form-status';
+
+    try {
+      const response = await fetch(FORMSPREE_ENDPOINT, {
+        method: 'POST',
+        headers: { 'Accept': 'application/json' },
+        body: new FormData(form)
+      });
+
+      if (response.ok) {
+        form.reset();
+        form.style.display = 'none';
+        status.textContent = 'Vielen Dank für deine Rückmeldung! Sie wurde erfolgreich versendet.';
+        status.className = 'form-status success';
+      } else {
+        throw new Error('Formspree meldete einen Fehler.');
+      }
+    } catch (err) {
+      status.textContent = 'Leider ist etwas schiefgelaufen. Bitte versuche es erneut.';
+      status.className = 'form-status error';
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Rückmeldung senden';
+    }
+  });
+</script>
+</body>
+</html>
